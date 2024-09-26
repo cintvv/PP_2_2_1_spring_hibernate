@@ -29,14 +29,16 @@ public class UserServiceImp implements UserService {
 
     @Transactional(readOnly = true)
     @Override
-    public User getUserByCar(Car car) {
+    public void getUserByCar(Car car) {
         List<User> users = userDao.listUsers();
         for (User user : users) {
-            if (user.getCar().equals(car)) {
-                return user;
+            if (user.getCarModel().equals(car.getModel()) & user.getCarSeries() == car.getSeries()) {
+                System.out.println("\n\n\n\nХозяин машины " + car.getModel()
+                        + " серии " + car.getSeries() + " - "
+                        + user.getFirstName() + " "
+                        + user.getLastName() + "\n\n\n\n");
             }
         }
-        return null;
     }
 
 

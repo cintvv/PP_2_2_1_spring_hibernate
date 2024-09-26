@@ -22,8 +22,8 @@ public class User {
    @Column(name = "email")
    private String email;
 
-    @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH })
-    @JoinColumn(name = "сar_id")
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
+    @JoinColumn(name = "car_id")
     private Car carCar;
 
     public User() {}

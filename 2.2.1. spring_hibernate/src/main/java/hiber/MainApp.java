@@ -16,11 +16,12 @@ public class MainApp {
 
       UserService userService = context.getBean(UserService.class);
 
-      userService.add(new User("User1", "Lastname1", "user1@mail.ru", new Car("Tesla", 4)));
-      userService.add(new User("User2", "Lastname2", "user2@mail.ru", new Car("CuberTesla", 21)));
-      userService.add(new User("User3", "Lastname3", "user3@mail.ru", new Car("Mazda", 3)));
-      userService.add(new User("User4", "Lastname4", "user4@mail.ru", new Car("Audi", 6)));
-
+      userService.add(new User("User1", "Lastname1", "user1@mail.ru", new Car("tesla", 3)));
+       userService.add(new User("User3", "Lastname234", "user3@mail.ru", new Car("mazda", 6)));
+       userService.add(new User("User346", "Lastname6457", "user5@mail.ru", new Car("nissan", 34)));
+       userService.add(new User("User657", "Lastname45reg", "user65@mail.ru", new Car("tesla", 6)));
+       userService.add(new User("User456", "Lastnamegdsfg", "user677@mail.ru", new Car("mazda", 2)));
+       userService.add(new User("User234", "Lastnamesdfs", "userss@mail.ru", new Car("audi", 44)));
 
 
       List<User> users = userService.listUsers();
@@ -33,6 +34,11 @@ public class MainApp {
          System.out.println("Auto Series = "+user.getCarSeries());
          System.out.println();
       }
+
+
+        Car findCar = new Car("tesla", 98);
+        userService.getUserByCar(findCar);
+
 
       context.close();
    }

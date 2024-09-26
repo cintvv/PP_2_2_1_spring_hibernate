@@ -14,7 +14,7 @@ public class Car {
     @GeneratedValue
     private int id;
 
-    @OneToOne(mappedBy = "сarCar")
+    @OneToOne(mappedBy = "carCar", cascade = CascadeType.ALL)
     private User user;
 
     public Car() {
