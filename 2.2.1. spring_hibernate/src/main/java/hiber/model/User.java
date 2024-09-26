@@ -1,6 +1,9 @@
 package hiber.model;
 
+import org.hibernate.engine.internal.Cascade;
+
 import javax.persistence.*;
+import java.util.concurrent.Callable;
 
 @Entity
 @Table(name = "users")
@@ -19,12 +22,17 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   public User() {}
+    @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH })
+    @JoinColumn(name = "сar_id")
+    private Car carCar;
+
+    public User() {}
    
-   public User(String firstName, String lastName, String email) {
+   public User(String firstName, String lastName, String email, Car car) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
+      this.carCar = car;
    }
 
    public Long getId() {
@@ -58,4 +66,20 @@ public class User {
    public void setEmail(String email) {
       this.email = email;
    }
+
+    public Car getCar() {
+        return carCar;
+    }
+
+    public void setCar(Car car) {
+        this.carCar = car;
+    }
+
+    public String getCarModel() {
+        return carCar.getModel();
+    }
+
+    public int getCarSeries() {
+        return carCar.getId();
+    }
 }
