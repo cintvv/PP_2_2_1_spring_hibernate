@@ -16,12 +16,12 @@ public class MainApp {
 
       UserService userService = context.getBean(UserService.class);
 
-      userService.add(new User("User1", "Lastname1", "user1@mail.ru", new Car("tesla", 3)));
-       userService.add(new User("User3", "Lastname234", "user3@mail.ru", new Car("mazda", 6)));
-       userService.add(new User("User346", "Lastname6457", "user5@mail.ru", new Car("nissan", 34)));
-       userService.add(new User("User657", "Lastname45reg", "user65@mail.ru", new Car("tesla", 6)));
-       userService.add(new User("User456", "Lastnamegdsfg", "user677@mail.ru", new Car("mazda", 2)));
-       userService.add(new User("User234", "Lastnamesdfs", "userss@mail.ru", new Car("audi", 44)));
+      userService.add(new User("Андрей", "Давыдов", "andrytate@mail.ru", new Car("tesla", 3)));
+       userService.add(new User("Олег", "Газманов", "olezha44@mail.ru", new Car("mazda", 6)));
+       userService.add(new User("Игорь", "Иванченко", "ivanchay@mail.ru", new Car("nissan", 34)));
+       userService.add(new User("Валентин", "Потеряшка", "valentin_poteryanny@mail.ru", new Car("tesla", 6)));
+       userService.add(new User("Артур", "Мастермечников", "artur_the_king@mail.ru", new Car("mazda", 2)));
+       userService.add(new User("Арсен", "Чеченский", "userss@mail.ru", new Car("audi", 44)));
 
 
       List<User> users = userService.listUsers();
@@ -36,10 +36,14 @@ public class MainApp {
       }
 
 
-        Car findCar = new Car("tesla", 98);
-        userService.getUserByCar(findCar);
+        Car lostcar = new Car("tesla", 3);
+        if (userService.findUserByCar(lostcar) == null) { // Обработка ожидаемого null, чтобы вывести более понятную фразу :-)
+            System.out.println("\n\n\n\nВладелец машины не найден\n\n\n\n");
+        } else {
+            System.out.println("\n\n\n\nПоиск владельца машины: " + userService.findUserByCar(lostcar) + "\n\n\n\n");
+        }
 
 
-      context.close();
+        context.close();
    }
 }

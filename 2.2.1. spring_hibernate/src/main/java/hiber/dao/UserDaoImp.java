@@ -5,6 +5,7 @@ import hiber.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -20,6 +21,10 @@ public class UserDaoImp implements UserDao {
       sessionFactory.getCurrentSession().persist(user);
    }
 
+   public SessionFactory getSessionFactory() {
+      return sessionFactory;
+   }
+
    @Override
    @SuppressWarnings("unchecked")
    public List<User> listUsers() {
@@ -27,4 +32,11 @@ public class UserDaoImp implements UserDao {
       return query.getResultList();
    }
 
+   @Transactional(readOnly = true)
+   @Override
+   public User getUserByCar(Car car) {
+      return (User) sessionFactory.getCurrentSession()
+              .createQuery("from User where carCar.model = :carModel and carCar.series = :series ")
+              .setParameter("carModel", car.getModel()).setParameter("series", car.getSeries()).uniqueResult();
+   }
 }

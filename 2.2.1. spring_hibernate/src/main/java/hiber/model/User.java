@@ -22,7 +22,7 @@ public class User {
    @Column(name = "email")
    private String email;
 
-    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id")
     private Car carCar;
 
@@ -81,5 +81,10 @@ public class User {
 
     public int getCarSeries() {
         return carCar.getId();
+    }
+
+    @Override
+    public String toString() {
+        return "Имя: " + firstName + ", Фамилия: " + lastName + ", Почта: " + email;
     }
 }
